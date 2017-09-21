@@ -6,7 +6,7 @@ Magento 2 module that extends [FishPig WordPress integration](https://github.com
 
 Configure repository
 ```
-composer config repositories.fishpigroot https://github.com/loganstellway/module-fishpig-root.git
+composer config repositories.fishpigroot git https://github.com/loganstellway/module-fishpig-root.git
 ```
 
 Install module with [Composer](https://getcomposer.org/):
