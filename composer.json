@@ -1,0 +1,17 @@
+{
+    "name": "loganstellway/module-fishpig-root",
+    "description": "Magento 2 module that extends FishPig Bedrock to allow Magento to serve WordPress pages from the root",
+    "type": "magento2-module",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "LoganStellway\\FishPigRoot\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.6",
+        "loganstellway/module-fishpig-bedrock": "*"
+    }
+}
