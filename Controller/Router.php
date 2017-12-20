@@ -36,22 +36,22 @@ class Router extends \FishPig\WordPress\Controller\Router
      * @param RequestInterface $request
      */
     public function match(RequestInterface $request)
-    {   
+    {
         try {
             if (!$this->_app->canRun()) {
                 return false;
             }
 
             if (!($requestUri = $this->_wpUrlBuilder->getRouterRequestUri($request))) {
-                $this->addRouteCallback(array($this, '_getHomepageRoutes'));    
+                $this->addRouteCallback(array($this, '_getHomepageRoutes'));
             }
 
             $this->addRouteCallback(array($this, '_getSimpleRoutes'));
             $this->addRouteCallback(array($this, '_getPostRoutes'));
             $this->addRouteCallback(array($this, '_getTaxonomyRoutes'));
-            
+
             $this->addExtraRoutesToQueue();
-            
+
             if (($route = $this->_matchRoute($requestUri)) !== false) {
                 $request->setModuleName($route['path']['module'])
                     ->setControllerName($route['path']['controller'])
@@ -70,11 +70,23 @@ class Router extends \FishPig\WordPress\Controller\Router
                 return $this->actionFactory->create('Magento\Framework\App\Action\Forward');
             }
         }
-        catch (\Exception $e) {
-            echo sprintf('<h1>Exception</h1><p>%s</p><pre>%s</pre>', $e->getMessage(), $e->getTraceAsString());
-            exit;
-        }
-        
+        catch (\Exception $e) {}
+
         return false;
+    }
+
+    /**
+     * Get home page routes
+     * @param  string $uri
+     * @return $this
+     */
+    protected function _getHomepageRoutes($uri = '')
+    {
+        if ($this->_app->getHomepagePageId() == $this->_app->getBlogPageId()) {
+            $this->addRoute('', '*/homepage/view');
+        } else {
+            $this->addRoute('', 'lsfishpigroot/homepage/view');
+        }
+        return $this;
     }
 }
