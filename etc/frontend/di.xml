@@ -4,4 +4,7 @@
     <type name="Magento\Cms\Controller\Index\Index">
         <plugin name="loganstellway_fishpigroot_wp_home" type="LoganStellway\FishPigRoot\Plugin\CmsIndexPlugin" />
     </type>
+    <type name="FishPig\WordPress\Model\App\Url">
+        <plugin name="lsfishpigroot_app_url_plugin" type="LoganStellway\FishPigRoot\Plugin\Model\App\UrlPlugin" />
+    </type>
 </config>
